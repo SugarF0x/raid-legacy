@@ -2,8 +2,24 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import { useAppDispatch, useAppSelector } from "../hooks"
+import { useEffect } from "react"
+import { initAssets } from "../store/assets/thunks"
 
 const Home: NextPage = () => {
+  const dispatch = useAppDispatch()
+  const assets = useAppSelector(state => state.assets)
+
+  useEffect(() => {
+    dispatch(initAssets())
+  }, [])
+
+  useEffect(() => {
+    if ('loadedEntries' in assets && assets.entries === assets.loadedEntries) {
+      console.log(assets)
+    }
+  }, [assets])
+
   return (
     <div className={styles.container}>
       <Head>
