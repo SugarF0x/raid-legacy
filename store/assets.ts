@@ -3,8 +3,9 @@ import {
   PayloadAction,
 } from '@reduxjs/toolkit';
 import type { RootState } from '.';
+import { AssetsMap } from '../types'
 
-export type AssetsState = {
+export type AssetsState = Pick<AssetsMap, 'entries'> & AssetsMap['assets'] & {
 
 };
 
@@ -16,7 +17,7 @@ export const assetsSlice = createSlice({
   name: 'assets',
   initialState,
   reducers: {
-
+    
   },
 });
 
