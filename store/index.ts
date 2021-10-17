@@ -3,7 +3,7 @@ import {
   configureStore,
   ThunkAction,
 } from '@reduxjs/toolkit';
-import { assetsSlice } from "./assets"
+import { assetsSlice } from "./assets/assets"
 
 export const store = configureStore({
   reducer: {

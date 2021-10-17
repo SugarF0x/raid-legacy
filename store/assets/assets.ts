@@ -2,8 +2,8 @@ import {
   createSlice,
   PayloadAction,
 } from '@reduxjs/toolkit';
-import type { RootState } from '.';
-import { AssetsMap } from '../types'
+import type { RootState } from '../index';
+import { AssetsMap } from './types'
 
 export type AssetsState = Pick<AssetsMap, 'entries'> & AssetsMap['assets'] & {
 

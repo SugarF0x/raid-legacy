@@ -58,17 +58,27 @@ async function quicktypeJSON(targetLanguage, typeName, jsonString) {
 }
 
 const json = (() => {
-  const assetsPath = path.resolve('public/assets')
+  const publicPath = 'public/assets'
+  const assetsPath = path.resolve(publicPath)
   const paths = getAllFiles(assetsPath).map(e => e.slice(assetsPath.length + 1))
   const transformed = paths.reduce((acc, val) => {
     const array = val.split('\\')
     const file = array.pop()
     const path = array.join('.')
-    if (!acc[path]) acc[path] = []
-    acc[path] = [...acc[path], file]
-    if (!isNaN(acc[path][0].split('.')[0])) {
-      acc[path] = acc[path].sort((a,b) => Number(a.split('.')[0]) - Number(b.split('.')[0]))
+    const fileName = file.split('.')[0]
+    const assetPublicPath = `assets/${val}`.replace(/\\/g, '/')
+
+    if (isNaN(fileName)) {
+      acc[`${path}.${fileName}`] = assetPublicPath
+    } else {
+      if (!acc[path]) acc[path] = []
+      acc[path] = [...acc[path], assetPublicPath].sort((a,b) => {
+        const firstNumber = a.split('/').pop().split('.')[0]
+        const secondNumber = b.split('/').pop().split('.')[0]
+        return Number(firstNumber) - Number(secondNumber)
+      })
     }
+
     return acc
   }, {})
   return JSON.stringify({
