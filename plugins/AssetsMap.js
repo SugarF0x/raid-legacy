@@ -52,7 +52,6 @@ async function quicktypeJSON(targetLanguage, typeName, jsonString) {
 
   return await quicktype({
     inputData,
-    allPropertiesOptional: true,
     lang: targetLanguage,
   });
 }

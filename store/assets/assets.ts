@@ -11,7 +11,10 @@ export type AssetsState = Pick<AssetsMap, 'entries'> & AssetsMap['assets'] & {
 };
 
 const initialState: AssetsState = {
-  loadedEntries: 0
+  loadedEntries: 0,
+  entries: undefined!,
+  images: undefined!,
+  sounds: undefined!
 };
 
 export const assetsSlice = createSlice({

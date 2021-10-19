@@ -14,7 +14,7 @@ export const initAssets = createAsyncThunk(
   'assets/initAssets',
   async (payload, { dispatch, getState }) => {
     const state = (getState() as any).assets as AssetsState
-    if ('entries' in state) return
+    if (state.entries > 0) return
 
     fetch('/_next/static/assetsMap.json')
       .then(response => response.json())

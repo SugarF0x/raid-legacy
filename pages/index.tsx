@@ -1,14 +1,14 @@
 import type { NextPage } from 'next'
 import 'react-circular-progressbar/dist/styles.css';
-import { AssetsLoader } from "../components"
+import dynamic from "next/dynamic"
+
+const AssetsLoader = dynamic(() => import('../components/AssetsLoader'), { ssr: false })
+const Game = dynamic(() => import('../components/Game'), { ssr: false })
 
 const Home: NextPage = () => {
-
   return (
     <AssetsLoader>
-      <div>
-        All assets loaded
-      </div>
+      <Game />
     </AssetsLoader>
   )
 }

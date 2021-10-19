@@ -10,7 +10,9 @@ export function AssetsLoader(props: { children: ReactNode }) {
   const { entries, loadedEntries } = useAppSelector(state => state.assets)
 
   useEffect(() => {
-    dispatch(initAssets())
+    if (entries !== loadedEntries) {
+      dispatch(initAssets())
+    }
   }, [])
 
   const isLoading = useMemo(() => entries !== loadedEntries, [entries, loadedEntries])
@@ -35,3 +37,5 @@ export function AssetsLoader(props: { children: ReactNode }) {
     </>
   )
 }
+
+export default AssetsLoader
